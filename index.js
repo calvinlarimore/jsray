@@ -65,8 +65,6 @@ const input = {
 	shift: false
 }
 
-
-
 function clearScreen() {
 	ctx.fillStyle = COLORS.ceiling;
 	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2);
@@ -75,6 +73,9 @@ function clearScreen() {
 }
 
 function movePlayer() {
+	let oldX = player.x;
+	let oldY = player.y;
+
 	if (input.j) { player.angle -= player.turnspeed * 0.05; }
 	if (input.l) { player.angle += player.turnspeed * 0.05; }
 
@@ -98,6 +99,11 @@ function movePlayer() {
 	if (input.d) {
 		player.x += Math.cos(player.angle + Math.PI / 2) * (player.speed * 0.5);
 		player.y += Math.sin(player.angle + Math.PI / 2) * (player.speed * 0.5);
+	}
+
+	if (map[Math.floor(player.y / CELL_SIZE)][Math.floor(player.x / CELL_SIZE)] == 1) {
+		player.x = oldX;
+		player.y = oldY;
 	}
 }
 
