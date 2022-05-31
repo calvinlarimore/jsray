@@ -281,7 +281,7 @@ function gameLoop() {
 	movePlayer();
 	const rays = getRays();
 	renderScene(rays);
-	renderMinimap(0, 0, 0.25, rays);
+	renderMinimap(0, 0, 0.1, rays);
 }
 
 setInterval(gameLoop, TICK);
